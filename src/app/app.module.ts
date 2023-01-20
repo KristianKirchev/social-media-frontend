@@ -40,6 +40,7 @@ import { TopicPostsComponent } from './post/topic-posts/topic-posts.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     SignupComponent,
     LoginComponent,
     HomeComponent,
@@ -78,13 +79,13 @@ import { TopicPostsComponent } from './post/topic-posts/topic-posts.component';
     BrowserAnimationsModule,
     FormsModule,
   ],
-   providers: [
-     {
-       provide: HTTP_INTERCEPTORS,
-       useClass: RequestInterceptor,
-       multi: true,
-     },
-   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,10 +2,30 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="flex-grow-1">
       <a aria-label="Home" class="logo" routerLink="/home">
+
         <svg xmlns="http://www.w3.org/2000/svg" class="icon-svg">
-          <path
-            d="M58.2 3.365a29.503 29.503 0 0 1-3.419 6.064A32.094 32.094 0 1 0 9.965 55.372l1.186 1.047a32.08 32.08 0 0 0 52.67-22.253c.875-8.17-1.524-18.51-5.62-30.8zM14.53 55.558a2.744 2.744 0 1 1-.404-3.857 2.744 2.744 0 0 1 .404 3.857zm43.538-9.61c-7.92 10.55-24.83 6.99-35.672 7.502 0 0-1.922.113-3.857.43 0 0 .73-.31 1.663-.663 7.614-2.65 11.213-3.16 15.838-5.54 8.708-4.427 17.322-14.122 19.112-24.2-3.313 9.695-13.373 18.032-22.53 21.418-6.276 2.313-17.614 4.566-17.614 4.566l-.457-.245c-7.714-3.75-7.952-20.457 6.077-25.845 6.143-2.366 12.02-1.067 18.654-2.65 7.084-1.683 15.28-6.99 18.615-13.916 3.73 11.08 8.224 28.422.166 39.15z"
-            fill="#68bd45" /></svg>
+          <defs>
+              <linearGradient id="ecwaJpOVg414-fill" x1="0" y1="0.5" x2="1" y2="0.5" spreadMethod="pad" gradientUnits="objectBoundingBox" gradientTransform="translate(0 0)">
+                  <stop id="ecwaJpOVg414-fill-0" offset="0%" stop-color="#1e6b03"/>
+                  <stop id="ecwaJpOVg414-fill-1" offset="100%" stop-color="#fff"/>
+              </linearGradient>
+              <linearGradient id="ecwaJpOVg415-fill" x1="0" y1="0.5" x2="1" y2="0.5" spreadMethod="pad" gradientUnits="objectBoundingBox" gradientTransform="translate(0 0)">
+                  <stop id="ecwaJpOVg415-fill-0" offset="0%" stop-color="#1e6b03"/>
+                  <stop id="ecwaJpOVg415-fill-1" offset="100%" stop-color="#fff"/>
+              </linearGradient>
+              <linearGradient id="ecwaJpOVg416-fill" x1="0" y1="0.5" x2="1" y2="0.5" spreadMethod="pad" gradientUnits="objectBoundingBox" gradientTransform="translate(0 0)">
+                  <stop id="ecwaJpOVg416-fill-0" offset="0%" stop-color="#1e6b03"/>
+                  <stop id="ecwaJpOVg416-fill-1" offset="100%" stop-color="#fff"/>
+              </linearGradient>
+          </defs>
+          <g transform="translate(7.155959 19.248049)">
+              <path d="M-104.887521,-60.802075c0-12.50799,11.564487-22.64772,25.830004-22.64772s25.830004,10.139729,25.830004,22.64772-11.564487,22.64772-25.830004,22.64772-25.830004-10.139729-25.830004-22.64772Z" transform="matrix(1.038711 0.548227-.403477 0.764456 82.429715 103.100074)" fill="#faad7a" stroke-width="0"/>
+              <path d="M189.982676,56.670709c-3.484415-9.257944-7.869683-4.444183-4.856366,1.320323.834683,1.596757,2.454686,2.237445,3.839917,3.120764c4.358247,2.779124,7.593433,8.091829,7.115141,13.683352-.475608,5.560146-10.254256,8.115046-14.569097,6.601618-3.861355-1.354368-5.88223-3.383718-5.308121-5.161265" transform="translate(-156.262816-52.07909)" fill="url(#ecwaJpOVg414-fill)" stroke="#0557fa" stroke-width="0.6"/>
+              <path d="M123.385113,124.319019c1.615073-9.527903-10.533471-10.893155-13.241354-5.035744-3.293423,7.123994,12.084163,9.434842,7.370187,17.932164-3.181643,5.73517-12.242303.736203-13.990863-3.561867" transform="translate(-89.626359-119.82704)" fill="url(#ecwaJpOVg415-fill)" stroke="#0557fa" stroke-width="0.6"/>
+              <path d="M97.723789,175.245292c1.421981-1.577472-.397627-8.67492-5.611199-10.001949" transform="translate(-78.24697-150.511289)" fill="url(#ecwaJpOVg416-fill)" stroke="#0557fa" stroke-width="0.6"/>
+          </g>
+      </svg>
+
         <span class="text">
           Spring Social Network
         </span>
@@ -25,14 +45,19 @@
     </div>
     <div class="flex-grow-1 float-right">
       <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button (click)="goToUserProfile()" ngbDropdownItem>Profile</button>
+          <button (click)="logout()" ngbDropdownItem>Logout</button>
+        </div>
+        <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
+          <fa-icon class="account-icon fa-lg" [icon]="faUser"></fa-icon>
+          {{username}}
+        </button>
       </div>
       <div *ngIf="!isLoggedIn">
         <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
         <a routerLink="/login" class="float-right login mr-2">Login</a>
       </div>
-
-
-
     </div>
   </nav>
 </header>

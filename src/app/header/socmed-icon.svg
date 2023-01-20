@@ -1,0 +1,22 @@
+<svg id="ecwaJpOVg411" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+    <defs>
+        <linearGradient id="ecwaJpOVg414-fill" x1="0" y1="0.5" x2="1" y2="0.5" spreadMethod="pad" gradientUnits="objectBoundingBox" gradientTransform="translate(0 0)">
+            <stop id="ecwaJpOVg414-fill-0" offset="0%" stop-color="#1e6b03"/>
+            <stop id="ecwaJpOVg414-fill-1" offset="100%" stop-color="#fff"/>
+        </linearGradient>
+        <linearGradient id="ecwaJpOVg415-fill" x1="0" y1="0.5" x2="1" y2="0.5" spreadMethod="pad" gradientUnits="objectBoundingBox" gradientTransform="translate(0 0)">
+            <stop id="ecwaJpOVg415-fill-0" offset="0%" stop-color="#1e6b03"/>
+            <stop id="ecwaJpOVg415-fill-1" offset="100%" stop-color="#fff"/>
+        </linearGradient>
+        <linearGradient id="ecwaJpOVg416-fill" x1="0" y1="0.5" x2="1" y2="0.5" spreadMethod="pad" gradientUnits="objectBoundingBox" gradientTransform="translate(0 0)">
+            <stop id="ecwaJpOVg416-fill-0" offset="0%" stop-color="#1e6b03"/>
+            <stop id="ecwaJpOVg416-fill-1" offset="100%" stop-color="#fff"/>
+        </linearGradient>
+    </defs>
+    <g transform="translate(7.155959 19.248049)">
+        <path d="M-104.887521,-60.802075c0-12.50799,11.564487-22.64772,25.830004-22.64772s25.830004,10.139729,25.830004,22.64772-11.564487,22.64772-25.830004,22.64772-25.830004-10.139729-25.830004-22.64772Z" transform="matrix(1.038711 0.548227-.403477 0.764456 82.429715 103.100074)" fill="#faad7a" stroke-width="0"/>
+        <path d="M189.982676,56.670709c-3.484415-9.257944-7.869683-4.444183-4.856366,1.320323.834683,1.596757,2.454686,2.237445,3.839917,3.120764c4.358247,2.779124,7.593433,8.091829,7.115141,13.683352-.475608,5.560146-10.254256,8.115046-14.569097,6.601618-3.861355-1.354368-5.88223-3.383718-5.308121-5.161265" transform="translate(-156.262816-52.07909)" fill="url(#ecwaJpOVg414-fill)" stroke="#0557fa" stroke-width="0.6"/>
+        <path d="M123.385113,124.319019c1.615073-9.527903-10.533471-10.893155-13.241354-5.035744-3.293423,7.123994,12.084163,9.434842,7.370187,17.932164-3.181643,5.73517-12.242303.736203-13.990863-3.561867" transform="translate(-89.626359-119.82704)" fill="url(#ecwaJpOVg415-fill)" stroke="#0557fa" stroke-width="0.6"/>
+        <path d="M97.723789,175.245292c1.421981-1.577472-.397627-8.67492-5.611199-10.001949" transform="translate(-78.24697-150.511289)" fill="url(#ecwaJpOVg416-fill)" stroke="#0557fa" stroke-width="0.6"/>
+    </g>
+</svg>
