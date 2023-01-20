@@ -19,8 +19,6 @@ import { ListTopicsComponent } from './topic/list-topics/list-topics.component';
 import { AllUsersComponent } from './user/all-users/all-users.component';
 import { TopicPostsComponent } from './post/topic-posts/topic-posts.component';
 
-
-
 const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
   { path: 'login', component: LoginComponent },
