@@ -1,1 +1,7 @@
-<p>search works!</p>
+<form action="" class="search-bar">
+    <input type="search" name="search" pattern=".*\S.*" [(ngModel)]="enteredValue" (input)="onSearchTextChanged()">
+    <button class="search-btn" type="submit">
+      <span>Search</span>
+    </button>
+  </form>
+  

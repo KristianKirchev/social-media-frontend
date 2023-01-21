@@ -19,7 +19,6 @@ export class UserProfileComponent implements OnInit {
   userModel: UserModel;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private postService: PostService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router
@@ -42,6 +41,10 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((routeParams) => {
       this.username = routeParams['username'];
+      this.userService.getProfileInfo(this.username).subscribe({
+        next: (data) => (this.userModel = data),
+        error: (error) => throwError(() => error),
+      });
     });
   }
 
@@ -51,6 +54,24 @@ export class UserProfileComponent implements OnInit {
 
   following(): boolean {
     return this.userModel.followedByCurrentUser;
+  }
+  follow() {
+    this.userService.follow(this.username).subscribe({
+      next: () => this.updateProfileInfo(),
+      error: (error) => throwError(() => error),
+    });
+  }
+  unfollow() {
+    this.userService.unfollow(this.username).subscribe({
+      next: () => this.updateProfileInfo(),
+      error: (error) => throwError(() => error),
+    });
+  }
+
+  updateProfileInfo() {
+    this.userService.getProfileInfo(this.username).subscribe((data) => {
+      this.userModel = data;
+    });
   }
 
   goToChangeProfile() {
