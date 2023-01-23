@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopicPostsComponent } from './topic-posts.component';
 
-describe('CompComponent', () => {
+describe('TopicPostsComponent', () => {
   let component: TopicPostsComponent;
   let fixture: ComponentFixture<TopicPostsComponent>;
 

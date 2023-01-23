@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { throwError } from 'rxjs';
+import { PostModel } from 'src/app/post/post-model';
 import { PostService } from 'src/app/post/service/post.service';
 import { AuthService } from '../../auth/service/auth.service';
 import { UserService } from '../../user/service/user.service';
@@ -16,9 +17,11 @@ export class UserProfileComponent implements OnInit {
   faUser = faUser;
   username: string;
   postLength: number;
+  posts: PostModel[] = [];
   userModel: UserModel;
   constructor(
     private activatedRoute: ActivatedRoute,
+    private postService: PostService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router
@@ -43,6 +46,10 @@ export class UserProfileComponent implements OnInit {
       this.username = routeParams['username'];
       this.userService.getProfileInfo(this.username).subscribe({
         next: (data) => (this.userModel = data),
+        error: (error) => throwError(() => error),
+      });
+      this.postService.getAllPostsForUser(this.username).subscribe({
+        next: (data) => ((this.posts = data), (this.postLength = data.length)),
         error: (error) => throwError(() => error),
       });
     });

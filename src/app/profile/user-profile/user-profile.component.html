@@ -53,6 +53,11 @@
       <div *ngIf="yourProfile()">
         Your Posts:
       </div>
+      <div *ngIf="!yourProfile()">
+        Welcome to {{username}}'s profile. Check his posts!
+      </div>
+      <app-post [posts]="posts"></app-post>
+      <hr />
     </div>
   </div>
 </div>

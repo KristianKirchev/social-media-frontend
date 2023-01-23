@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdatePostComponent } from './update-post.component';
 
-describe('CompComponent', () => {
+describe('UpdatePostComponent', () => {
   let component: UpdatePostComponent;
   let fixture: ComponentFixture<UpdatePostComponent>;
 
