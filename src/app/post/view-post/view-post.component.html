@@ -3,6 +3,9 @@
       <hr />
       <div class="col-md-9">
         <div class="row post">
+          <div class="col-md-1 reaction">
+            <app-reaction [post]="post"></app-reaction>
+          </div>
           <div class="col-md-10">
             <div>
               <span>
@@ -27,14 +30,45 @@
                     </div>
                   </div>
                 </div>
-  
-  
               </div>
             </div>
             <hr />
             <a class=" post-title">{{post.title}}</a>
             <div>
               <p class="post-text" [innerHtml]="post.content"></p>
+            </div>
+            <div class="post-comment">
+              <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+                <div class="form-group">
+                  <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
+                </div>
+                <button type="submit" class="btnComment float-right">Comment</button>
+              </form>
+            </div>
+            <div style="margin-top: 60px;" *ngFor="let comment of comments">
+              <div class="comment">
+                <div class="username">
+                  <a routerLink="/user-profile/{{comment.username}}">{{comment.username}}</a>
+                  <div ngbDropdown class="d-inline-block float-right">
+                    <button type="button" class="arrow btn-outline-primary" id="dropdownBasic1"
+                      ngbDropdownToggle></button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <div *ngIf=isCommentOwnedByLoggedUser(comment.username)>
+                        <button class="deleteItem" ngbDropdownItem (click)="deleteComment(comment.id)">Delete</button>
+                        <!--<button ngbDropdownItem class="editItem" (click)="goToEditPost(post.id)">Edit</button>-->
+                      </div>
+                      <button *ngIf=!isCommentOwnedByLoggedUser(comment.username) ngbDropdownItem
+                        class="deleteItem">Report
+                        comment</button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p>{{comment.duration}}</p>
+                </div>
+                <b>{{comment.text}}</b>
+              </div>
+              <hr />
             </div>
           </div>
         </div>
