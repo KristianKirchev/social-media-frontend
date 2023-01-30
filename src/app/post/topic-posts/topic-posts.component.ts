@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { Modals } from 'src/app/modals';
+import { ReportPayload } from 'src/app/report/report-payload';
 import { ReportType } from 'src/app/report/report-type';
 import { ReportService } from 'src/app/report/report.service';
 import { PostModel } from '../post-model';
@@ -22,6 +23,7 @@ export class TopicPostsComponent implements OnInit {
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   faComments = faComments;
+  reportPayload: ReportPayload;
   topicName: string = '';
 
   constructor(
@@ -32,6 +34,11 @@ export class TopicPostsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modals: Modals
   ) {
+    this.reportPayload = {
+      postId: 0,
+      username: '',
+      reportType: ReportType.CURSING,
+    };
   }
 
   ngOnInit(): void {
@@ -71,5 +78,16 @@ export class TopicPostsComponent implements OnInit {
 
   goToEditPost(id: number) {
     this.router.navigateByUrl('update-post/' + id);
+  }
+
+  reportPost(id: number) {
+    this.reportPayload.postId = id;
+    this.reportPayload.reportType = ReportType.CURSING;
+    this.reportService.reportPost(this.reportPayload).subscribe({
+      next: () => this.modals.successNotification(),
+      error: (error) => (
+        this.modals.errorNotification(error.error), console.log(error.error)
+      ),
+    });
   }
 }

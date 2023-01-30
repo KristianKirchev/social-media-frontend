@@ -11,6 +11,7 @@ import { PostModel } from 'src/app/post/post-model';
 import { PostService } from 'src/app/post/service/post.service';
 import { ReportType } from 'src/app/report/report-type';
 import { ReportService } from 'src/app/report/report.service';
+import { ReportPayload } from 'src/app/report/report-payload';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -24,6 +25,7 @@ export class PostComponent implements OnInit {
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   faComments = faComments;
+  reportPayload: ReportPayload;
 
   constructor(
     private router: Router,
@@ -32,6 +34,11 @@ export class PostComponent implements OnInit {
     private reportService: ReportService,
     private modals: Modals
   ) {
+    this.reportPayload = {
+      postId: 0,
+      username: '',
+      reportType: ReportType.CURSING,
+    };
   }
 
   ngOnInit(): void {}
@@ -59,5 +66,16 @@ export class PostComponent implements OnInit {
 
   goToEditPost(id: number) {
     this.router.navigateByUrl('update-post/' + id);
+  }
+
+  reportPost(id: number) {
+    this.reportPayload.postId = id;
+    this.reportPayload.reportType = ReportType.CURSING;
+    this.reportService.reportPost(this.reportPayload).subscribe({
+      next: () => this.modals.successNotification(),
+      error: (error) => (
+        this.modals.errorNotification(error.error), console.log(error.error)
+      ),
+    });
   }
 }

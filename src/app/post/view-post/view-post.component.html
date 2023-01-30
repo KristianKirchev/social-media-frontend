@@ -27,6 +27,9 @@
                         <button class="deleteItem" ngbDropdownItem (click)="deletePost()">Delete</button>
                         <button ngbDropdownItem class="editItem" (click)="goToEditPost()">Edit</button>
                       </div>
+                      <button *ngIf=!postOwnedByLoggedUser ngbDropdownItem class="deleteItem"
+                      (click)="reportPost()">Report
+                      post</button>
                     </div>
                   </div>
                 </div>

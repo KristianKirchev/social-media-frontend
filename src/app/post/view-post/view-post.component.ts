@@ -8,6 +8,7 @@ import { CommentService } from 'src/app/comment/comment.service';
 import { Modals } from 'src/app/modals';
 import { PostModel } from 'src/app/post/post-model';
 import { PostService } from 'src/app/post/service/post.service';
+import { ReportPayload } from 'src/app/report/report-payload';
 import { ReportType } from 'src/app/report/report-type';
 import { ReportService } from 'src/app/report/report.service';
 
@@ -22,6 +23,7 @@ export class ViewPostComponent implements OnInit {
   commentModel: CommentModel;
   comments: CommentModel[] = [];
   postOwnedByLoggedUser: boolean = false;
+  reportPayload: ReportPayload;
 
   constructor(
     private postService: PostService,
@@ -29,11 +31,18 @@ export class ViewPostComponent implements OnInit {
     private commentService: CommentService,
     private authService: AuthService,
     private router: Router,
+    private reportService: ReportService,
     private modals: Modals
   ) {
     this.commentForm = new FormGroup({
       text: new FormControl('', Validators.required),
     });
+
+    this.reportPayload = {
+      postId: 0,
+      username: '',
+      reportType: ReportType.CURSING,
+    };
 
     this.post = {
       id: 0,
@@ -120,5 +129,16 @@ export class ViewPostComponent implements OnInit {
 
   goToEditPost() {
     this.router.navigateByUrl('update-post/' + this.post.id);
+  }
+
+  reportPost() {
+    this.reportPayload.postId = this.post.id;
+    this.reportPayload.reportType = ReportType.CURSING;
+    this.reportService.reportPost(this.reportPayload).subscribe({
+      next: () => this.modals.successNotification(),
+      error: (error) => (
+        this.modals.errorNotification(error.error), console.log(error.error)
+      ),
+    });
   }
 }
