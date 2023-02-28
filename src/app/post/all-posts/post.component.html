@@ -1,5 +1,6 @@
 <div *ngIf="posts.length!=0">
     <div class="row post" *ngFor="let post of posts">
+      <app-reaction [post]="post"></app-reaction>
       <div class="col-md-10">
         <div><span class="topic-info">
             <span class="topic-text"><a class="posturl"
@@ -23,8 +24,6 @@
                 </div>
               </div>
             </div>
-  
-  
           </div>
         </div>
         <hr />

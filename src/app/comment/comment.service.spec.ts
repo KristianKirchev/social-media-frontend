@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CommentService } from './comment.service';
 
-describe('SrvsService', () => {
+describe('CommentService', () => {
   let service: CommentService;
 
   beforeEach(() => {

@@ -29,7 +29,6 @@ export class Modals {
   }
 
   errorNotification(message: string) {
-    /*Swal.fire('Cant report', message, 'error');*/
     Swal.fire({
       title: 'Error',
       text: message,

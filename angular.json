@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "social-media-fe": {
+    "social-media-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,26 +13,25 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/social-media-fe",
+            "outputPath": "dist/social-media-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
+              "budgets": [{
                   "type": "initial",
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
@@ -60,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "social-media-fe:build:production"
+              "browserTarget": "social-media-frontend:build:production"
             },
             "development": {
-              "browserTarget": "social-media-fe:build:development"
+              "browserTarget": "social-media-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +70,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "social-media-fe:build"
+            "browserTarget": "social-media-frontend:build"
           }
         },
         "test": {

@@ -33,9 +33,9 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="col-md-6">
-                                <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" required>
+                                <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                                 <span *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')!.touched ">
-                                    Please provide password
+                                    Please provide password (At least: 1 Uppercase, 1 Lowercase, 1 Digit, 1 Special Symbol, 8 characters)
                                 </span>
                             </div>
                         </div>

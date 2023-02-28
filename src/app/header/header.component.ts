@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import {
   faBell,
   faExclamation,
@@ -15,6 +15,7 @@ import { NotificationService } from '../notification/notification.service';
 import { NotificationModel } from '../notification/notification-model';
 import { Frame } from '../chat/chat/websocket-mess';
 import { ChatService } from '../chat/service/chat.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -44,13 +45,63 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('reinit header')
+    console.log('reinicijalizacija headera')
+    if (this.authService.isLogged()) {
+      this.updateHeader(this.authService.isLogged());
+      console.log('/topic/notification/' + this.authService.getUserName());
+
+      this.stomp.subscribe(
+        '/topic/notification/' + this.authService.getUserName(),
+        (msg: Frame) => {
+          if (msg.body == 'notification') {
+            this.getLastNotification();
+            this.notification_count = this.computeNotificationCount();
+          }
+          if (msg.body == 'message') {
+            this.message_count++;
+          }
+        }
+      );
+    }
+    this.authService.loggedIn.subscribe(
+      (data: boolean) => ((this.isLoggedIn = data), this.updateHeader(data))
+
+    );
+    this.chatService.numberOfSeenMessages.subscribe(
+      (data: number) => (this.message_count = this.message_count - data)
+    );
     this.authService.username.subscribe(
       (data: string) => (this.username = data)
     );
+    
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.username = this.authService.getUserName();
+      this.isLoggedIn = this.authService.isLogged();
+    });
 
-    this.isLoggedIn = this.authService.isLogged();
-    this.username = this.authService.getUserName();
+    this.authService.username.subscribe(
+      (data: string) => (this.username = data)
+    );
+  }
+
+  updateHeader(data: boolean) {
+    if (data) {
+      this.getAllNotifications();
+      this.getNumberOfNewMsg();
+    }
+  }
+
+  computeNotificationCount(): number {
+    let count = 0;
+    for (let i = 0; i < this.notifications.length; i++) {
+      const element = this.notifications[i];
+      if (element.read == false) {
+        count++;
+      }
+    }
+    return count;
   }
 
   goToUserProfile() {
@@ -59,7 +110,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigateByUrl('/login');
-    this.isLoggedIn = false;
   }
 
   isAdmin(): boolean {
@@ -68,5 +118,44 @@ export class HeaderComponent implements OnInit {
 
   goToAdminPage() {
     this.router.navigateByUrl('admin');
+  }
+
+  getLastNotification() {
+    this.notificationService.getLastNotification().subscribe((data) => {
+      this.notifications.unshift(data),
+        (this.notification_count = this.computeNotificationCount());
+    });
+  }
+  
+  getAllNotifications() {
+    this.notificationService.getAllNotifications().subscribe((data) => {
+      this.notifications = data;
+      this.notification_count = this.computeNotificationCount();
+    });
+  }
+
+  getNumberOfNewMsg() {
+    this.chatService
+      .getNumberOfNewMsg()
+      .subscribe((data) => (this.message_count = data));
+  }
+
+  markAsRead(n: NotificationModel) {
+    this.notificationService.markAsRead(n).subscribe({
+      next: () => (
+        this.decreaseNotificationCOunt(n),
+        this.router.navigateByUrl('view-post/' + n.postId)
+      ),
+    });
+  }
+
+  decreaseNotificationCOunt(n: NotificationModel) {
+    for (let i = 0; i < this.notifications.length; i++) {
+      const element = this.notifications[i];
+      if (element.id == n.id && element.read == false) {
+        element.read = true;
+        this.notification_count--;
+      }
+    }
   }
 }
