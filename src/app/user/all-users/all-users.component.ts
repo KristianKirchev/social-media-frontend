@@ -67,7 +67,6 @@ export class AllUsersComponent implements OnInit {
             next: (data) => (this.users = data),
           });
         } else if (this.param == 'following') {
-          console.log('ulazim u following');
           this.userService.getAllFollowingForUser(this.username).subscribe({
             next: (data) => ((this.users = data), console.log(data)),
           });
@@ -88,7 +87,6 @@ export class AllUsersComponent implements OnInit {
             next: (data) => (this.users = data),
           });
         } else if (this.param == 'following') {
-          console.log('ulazim u following');
           this.userService.getAllFollowingForUser(this.username).subscribe({
             next: (data) => ((this.users = data), console.log(data)),
           });

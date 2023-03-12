@@ -59,7 +59,7 @@ export class UpdatePostComponent implements OnInit {
     this.actRoute.params.subscribe((routeParams) => {
       this.id = routeParams['id'];
     });
-    console.log(this.id);
+    //console.log(this.id);
     this.topicService.getAllTopics().subscribe({
       next: (data) => {
         this.topics = data;

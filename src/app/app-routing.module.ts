@@ -18,6 +18,7 @@ import { CreateTopicComponent } from './topic/create-topic/create-topic.componen
 import { ListTopicsComponent } from './topic/list-topics/list-topics.component';
 import { AllUsersComponent } from './user/all-users/all-users.component';
 import { TopicPostsComponent } from './post/topic-posts/topic-posts.component';
+import { ReactionComponent } from './reaction/reaction.component';
 
 const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
@@ -55,7 +56,7 @@ const routes: Routes = [
     path: 'user-profile/:username',
     component: UserProfileComponent,
     canActivate: [AuthGuard],
-  },
+  }
 ];
 
 @NgModule({

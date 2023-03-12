@@ -47,11 +47,11 @@ export class SuggestedUsersComponent implements OnChanges {
       if (data.length >= 4) {
         this.users = data.splice(0, 3);
         this.displayViewAll = true;
-        console.log('more than 4');
+        //console.log('more than 4');
       } else {
         this.users = data;
         this.displayViewAll = false;
-        console.log('else');
+        //console.log('else');
       }
     });
   }

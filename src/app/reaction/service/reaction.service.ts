@@ -21,6 +21,6 @@ export class ReactionService {
     if (!this.authService.isLogged()) {
       this.router.navigateByUrl('/login');
     }
-    return this.httpClient.post(this.baseUrl + 'api/react/', reactionModel);
+    return this.httpClient.post(this.baseUrl + 'api/react', reactionModel);
   }
 }

@@ -48,7 +48,7 @@ export class PostService {
   }
 
   deletePost(postId: number) {
-    console.log("in delete");
+    //console.log("in delete");
     return this.httpClient.delete(this.baseUrl + 'api/post/' + postId);
   }
 

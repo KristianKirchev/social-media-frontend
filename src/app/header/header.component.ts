@@ -45,7 +45,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('reinicijalizacija headera')
     if (this.authService.isLogged()) {
       this.updateHeader(this.authService.isLogged());
       console.log('/topic/notification/' + this.authService.getUserName());
